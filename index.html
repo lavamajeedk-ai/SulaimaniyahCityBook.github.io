@@ -1,101 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sulaimaniyah City Book</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: #333;
-        }
-        header {
-            background: #2c3e50;
-            color: #fff;
-            padding: 1rem 0;
-            text-align: center;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 2rem 0;
-        }
-        .hero {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        .book-cover {
-            flex: 1;
-            min-width: 300px;
-            background: #ddd;
-            height: 450px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .book-info {
-            flex: 2;
-            min-width: 300px;
-        }
-        h1 { margin-top: 0; }
-        .btn {
-            display: inline-block;
-            background: #e67e22;
-            color: #fff;
-            padding: 0.8rem 1.5rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-top: 1rem;
-        }
-        .btn:hover { background: #d35400; }
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: #f4f4f4;
-            margin-top: 2rem;
-        }
-    </style>
-</head>
-<body>
+// @lovable.dev/vite-tanstack-config already includes the following — do NOT add them manually
+// or the app will break with duplicate plugins:
+//   - tanstackStart, viteReact, tailwindcss, tsConfigPaths, nitro (build-only using cloudflare as a default target),
+//     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
+//     error logger plugins, and sandbox detection (port/host/strictPort).
+// You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
+import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-    <header>
-        <h1>Sulaimaniyah City Book</h1>
-    </header>
-
-    <div class="container">
-        <section class="hero">
-            <div class="book-cover">
-                <!-- Replace with an actual image link later -->
-                <p>Book Cover Image</p>
-            </div>
-            <div class="book-info">
-                <h2>Discover the Heart of Kurdistan</h2>
-                <p>Explore the rich history, vibrant culture, and stunning landscapes of Sulaimaniyah through this comprehensive guide. Whether you are a traveler or a local, this book offers insights you won't find anywhere else.</p>
-                <p><strong>Release Date:</strong> 2024</p>
-                <a href="#" class="btn">Pre-order Now</a>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="about">
-            <h3>About the Book</h3>
-            <p>This book covers everything from the founding of the city to its modern status as a cultural hub. It includes high-quality photography, interviews with locals, and maps of hidden gems across the city.</p>
-        </section>
-    </div>
-
-    <footer>
-        <p>&copy; 2024 Sulaimaniyah City Book. All rights reserved.</p>
-    </footer>
-
-</body>
-</html>
+export default defineConfig({
+  tanstackStart: {
+    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
+    // nitro/vite builds from this
+    server: { entry: "server" },
+  },
+});
